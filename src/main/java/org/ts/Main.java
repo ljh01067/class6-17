@@ -1,10 +1,11 @@
-package org.example;
+package org.ts;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Calc {
-    public static int run(String exp) {
+public class Main {
+    public static void main(String[] args) {
+        String exp = "(((20 + 20))) + 20";
         int i = 0;
 
         while (exp.indexOf(")") != -1) {
@@ -46,7 +47,7 @@ public class Calc {
             연산 연산1 = new 연산();
             i = 연산1.사칙연산(exp);
         }
-        return i;
+        System.out.println(i);
     }
 }
 
@@ -128,3 +129,4 @@ class 연산 {
         }
         return i;
     }}
+
