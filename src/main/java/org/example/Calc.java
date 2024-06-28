@@ -8,13 +8,34 @@ public class Calc {
         int i = 0;
 
         while (exp.indexOf(")") != -1) {
+            int num = exp.indexOf("(")+1;
+            if(exp.indexOf(")")>exp.indexOf("(",2)&&num != exp.indexOf("(",num)) {
+                if (exp.length() - exp.replace(String.valueOf("("), "").length() > 1) {
+                    int a = exp.length() - exp.replace(String.valueOf("("), "").length();
+                    연산 연산1 = new 연산();
+                    int[] y = new int[a];
+                    for (int b = 0; b < a; b++) {
+                        String[] x = new String[a];
+                        x[b] = exp.substring(exp.lastIndexOf("(") + 1, exp.indexOf(")"));
+                        y[b] = 연산1.사칙연산(x[b]);
+                        exp = exp.replace("(" + x[b] + ")", y[b] + "");
+
+                    }
+                    연산 연산2 = new 연산();
+                    i = 연산2.사칙연산(exp);
+                }
+            }
             Pattern pattern = Pattern.compile("[(](.*?)[)]");
             Matcher matcher = pattern.matcher(exp);
             연산 연산1 = new 연산();
             String ex = "";
             while (matcher.find()) {
-                if(matcher.group(1).indexOf("(") != -1){
-                    exp = exp.replace("(" + matcher.group(1) + ")",matcher.group(1));
+                String match = matcher.group(1);
+                for (int j = 0; j < matcher.group(1).length() - matcher.group(1).replace(String.valueOf("("), "").length(); j++) {
+                    match = match.concat(")");
+                }
+                if(match.indexOf("(") != -1){
+                    exp = exp.replace("(" + match + ")",match);
                     if(exp.length() - exp.replace(String.valueOf(")"), "").length()>=2){
                         break;
                     }
@@ -56,7 +77,9 @@ class 연산 {
         int i = 0;
         if (exp.indexOf(" * ") != -1) {
             i = 1;
-            //수식에 곱하기와 더하기가 있는 경우
+            if (exp.indexOf(" - ") != -1) {
+                exp = exp.replace(" - ", " + -");
+            }
             if (exp.indexOf(" + ") != -1) {
                 int unum = 0;
                 int dnum;
@@ -127,4 +150,5 @@ class 연산 {
             }
         }
         return i;
-    }}
+    }
+}
